@@ -1,33 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
+import Card from "./Card.tsx";
+import Cart from "./Cart.tsx";
+interface Product {
+    image: {
+        thumbnail: string;
+        mobile: string;
+        tablet: string;
+        desktop: string;
+    };
+    name: string;
+    category: string;
+    price: number;
+}
+export interface ItemCart {
+    id: number;
+    product: Product;
+    amount: number;
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cart, setCart] = useState<ItemCart[]>([]);
+  const [item, setItem] = useState<Product[]>([]);
+    const add_to_cart = (product: Product, id:number) => {
+        const new_cart_item : ItemCart = {id: id, product: product, amount: 1};
+        setCart([...cart, new_cart_item]);
+        console.log(cart)
+    }
+    useEffect(() => {
+        async function fetchData() {
+            try{
+                const response = await fetch("http://localhost:5173/src/data.json");
+                const data: Product[] = await response.json();
+
+                setItem(data);
+                return data;
+            } catch (err){
+                console.log(err);
+            }
+        }
+        fetchData().then(r => console.log(r));
+    }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className={"wrapper"}>
+        <section>
+            <h1>Desserts</h1>
+            <main>
+                {item.map((item, index) => <Card key={index} id={index} item={item} setCart={add_to_cart}/>)}
+            </main>
+            <aside>
+                <Cart cart={cart}></Cart>
+            </aside>
+        </section>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
     </>
   )
 }
