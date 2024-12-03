@@ -32,21 +32,7 @@ function App() {
         const updated_cart = [...cart].filter(item => item.id !== id);
         setCart(updated_cart);
     }
-    const handle_amount = (id: number, decrease = false):number[] => {
-        let new_data = [...cart]
-        const cart_item_to_update: ItemCart | any = new_data.find(item => item.id === id);
-        if((decrease && cart_item_to_update.amount === 1)) {
-            remove_from_cart(id)
-            return [0, 0]
-        } else if(decrease && cart_item_to_update.amount > 1) {
-            cart_item_to_update.amount = cart_item_to_update.amount - 1
-            setCart(new_data)
-            return [1, cart_item_to_update.amount]
-        }
-        cart_item_to_update.amount = cart_item_to_update.amount + 1
-        setCart(new_data)
-        return [1, cart_item_to_update.amount]
-    }
+
     useEffect(() => {
         async function fetchData() {
             try{
@@ -68,7 +54,7 @@ function App() {
         <section>
             <h1>Desserts</h1>
             <main>
-                {item.map((item, index) => <Card key={index} id={index} item={item} setCart={add_to_cart} handle_amount={handle_amount}/>)}
+                {item.map((item, index) => <Card key={index} setCart={setCart} removeItem={remove_from_cart} id={index} item={item} add_to_cart={add_to_cart} cart={cart}/>)}
             </main>
             <aside>
                 <Cart cart={cart} removeItem={remove_from_cart}></Cart>
