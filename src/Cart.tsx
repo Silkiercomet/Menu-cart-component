@@ -2,18 +2,22 @@ import {ItemCart} from "./App.tsx";
 
 interface cartType {
     cart: ItemCart[],
-    removeItem : (id: number) => void
+    removeItem : (id: number) => void,
+    setModal: React.Dispatch<React.SetStateAction<boolean>>
 }
-const Cart = ({ cart, removeItem }:cartType ) => {
+const Cart = ({ cart, removeItem, setModal }:cartType ) => {
 
     const total = cart.reduce((total, item) => {
         return total + item.product.price * item.amount;
+    }, 0);
+    const total_of_items = cart.reduce((total, item) => {
+        return total + item.amount;
     }, 0);
     if(cart.length){
         return (
             <div>
                 <div>
-                    <h2>Your Cart {cart.length || 0}</h2>
+                    <h2>Your Cart {total_of_items}</h2>
                     {cart.map((item: ItemCart) => <div key={item.product.name}>
                         <div>
                             <h4>{item.product.name}</h4>
@@ -26,7 +30,7 @@ const Cart = ({ cart, removeItem }:cartType ) => {
                     <div><span>order total</span> <span>{total}</span></div>
                 </div>
                 <span>this is a <b>carbon neutral</b> delivery</span>
-                <button>Confirm Order</button>
+                <button onClick={() => setModal(true)}>Confirm Order</button>
             </div>
         );
     }
