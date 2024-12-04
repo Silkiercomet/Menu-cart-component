@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Card from "./Card.tsx";
 import Cart from "./Cart.tsx";
+import SuccessOrder from "./SuccessOrder.tsx";
 interface Product {
     image: {
         thumbnail: string;
@@ -23,6 +24,7 @@ export interface ItemCart {
 function App() {
   const [cart, setCart] = useState<ItemCart[]>([]);
   const [item, setItem] = useState<Product[]>([]);
+  const [modal, setModal] = useState<boolean>(false);
     const add_to_cart = (product: Product, id:number) => {
         const new_cart_item : ItemCart = {id: id, product: product, amount: 1};
         setCart([...cart, new_cart_item]);
@@ -32,7 +34,10 @@ function App() {
         const updated_cart = [...cart].filter(item => item.id !== id);
         setCart(updated_cart);
     }
-
+    const clear_the_cart = () => {
+        setCart([]);
+        setModal(false);
+    }
     useEffect(() => {
         async function fetchData() {
             try{
@@ -50,6 +55,7 @@ function App() {
 
   return (
     <>
+        {modal && <SuccessOrder cart={cart} clear_the_cart={clear_the_cart} />}
       <div className={"wrapper"}>
         <section>
             <h1>Desserts</h1>
@@ -57,7 +63,7 @@ function App() {
                 {item.map((item, index) => <Card key={index} setCart={setCart} removeItem={remove_from_cart} id={index} item={item} add_to_cart={add_to_cart} cart={cart}/>)}
             </main>
             <aside>
-                <Cart cart={cart} removeItem={remove_from_cart}></Cart>
+                <Cart cart={cart} removeItem={remove_from_cart} setModal={setModal}></Cart>
             </aside>
         </section>
       </div>
