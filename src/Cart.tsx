@@ -1,4 +1,5 @@
 import {ItemCart} from "./App.tsx";
+import React from "react";
 
 interface cartType {
     cart: ItemCart[],
@@ -7,17 +8,17 @@ interface cartType {
 }
 const Cart = ({ cart, removeItem, setModal }:cartType ) => {
 
-    const total = cart.reduce((total, item) => {
-        return total + item.product.price * item.amount;
-    }, 0);
-    const total_of_items = cart.reduce((total, item) => {
-        return total + item.amount;
-    }, 0);
+    const [total_price, total_amount_items] = cart.reduce((total, item) => {
+        total[0] = total[0] + item.product.price * item.amount
+        total[1] = total[1] + item.amount;
+        return total
+    }, [0,0]);
+
     if(cart.length){
         return (
             <div>
                 <div>
-                    <h2>Your Cart {total_of_items}</h2>
+                    <h2>Your Cart {total_amount_items}</h2>
                     {cart.map((item: ItemCart) => <div key={item.product.name}>
                         <div>
                             <h4>{item.product.name}</h4>
@@ -27,7 +28,7 @@ const Cart = ({ cart, removeItem, setModal }:cartType ) => {
                         <button onClick={() => removeItem(item.id)}><img src={"./assets/images/icon-remove-item.svg"}
                                                                          alt={"remove item"}/></button>
                     </div>)}
-                    <div><span>order total</span> <span>{total}</span></div>
+                    <div><span>order total</span> <span>{total_price}</span></div>
                 </div>
                 <span>this is a <b>carbon neutral</b> delivery</span>
                 <button onClick={() => setModal(true)}>Confirm Order</button>

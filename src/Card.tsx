@@ -1,5 +1,6 @@
 
 import {ItemCart} from "./App.tsx";
+import React from "react";
 
 interface Product {
     image: {
@@ -19,8 +20,10 @@ interface Card {
     cart : ItemCart[],
     removeItem : (id: number) => void
     setCart: React.Dispatch<React.SetStateAction<ItemCart[]>>
+    screenSize: "mobile" | "tablet" | "desktop"
 }
-const Card = ({ item, add_to_cart, id, cart,removeItem, setCart }: Card) => {
+
+const Card = ({ item, add_to_cart, id, cart,removeItem, setCart, screenSize }: Card) => {
     const handle_amount = (decrease = false) => {
         let new_data = [...cart]
         const cart_item_to_update: ItemCart | any = new_data.find(item => item.id === id);
@@ -37,9 +40,17 @@ const Card = ({ item, add_to_cart, id, cart,removeItem, setCart }: Card) => {
         return
     }
     const is_in_cart = cart.find((element) => element.id === id)
+    let image
+    if(screenSize === "tablet"){
+        image = item.image.tablet
+    }else if(screenSize === "desktop"){
+        image = item.image.desktop
+    }else{
+        image = item.image.mobile
+    }
     return (
         <div>
-            <img src={item.image.thumbnail}  alt={"thumbnail"}/>
+            <img src={image}  alt={"thumbnail"}/>
             <h3>{item.name}</h3>
             <p>{item.category}</p>
             <p>{item.price}</p>

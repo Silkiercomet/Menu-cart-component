@@ -3,6 +3,7 @@ import './App.css'
 import Card from "./Card.tsx";
 import Cart from "./Cart.tsx";
 import SuccessOrder from "./SuccessOrder.tsx";
+import useScreenSize from "./hooks/useScreenSize.tsx";
 interface Product {
     image: {
         thumbnail: string;
@@ -25,6 +26,7 @@ function App() {
   const [cart, setCart] = useState<ItemCart[]>([]);
   const [item, setItem] = useState<Product[]>([]);
   const [modal, setModal] = useState<boolean>(false);
+  const screenSize = useScreenSize()
     const add_to_cart = (product: Product, id:number) => {
         const new_cart_item : ItemCart = {id: id, product: product, amount: 1};
         setCart([...cart, new_cart_item]);
@@ -60,7 +62,7 @@ function App() {
         <section>
             <h1>Desserts</h1>
             <main>
-                {item.map((item, index) => <Card key={index} setCart={setCart} removeItem={remove_from_cart} id={index} item={item} add_to_cart={add_to_cart} cart={cart}/>)}
+                {item.map((item, index) => <Card screenSize={screenSize} key={index} setCart={setCart} removeItem={remove_from_cart} id={index} item={item} add_to_cart={add_to_cart} cart={cart}/>)}
             </main>
             <aside>
                 <Cart cart={cart} removeItem={remove_from_cart} setModal={setModal}></Cart>
