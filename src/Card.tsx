@@ -50,16 +50,20 @@ const Card = ({ item, add_to_cart, id, cart,removeItem, setCart, screenSize }: C
     }
     return (
         <div>
-            <img src={image}  alt={"thumbnail"}/>
-            <h3>{item.name}</h3>
+            <img src={image} alt={item.name}/>
             <p>{item.category}</p>
+            <h3>{item.name}</h3>
             <p>{item.price}</p>
             {!is_in_cart
                 ? <button onClick={() => {
                     add_to_cart(item, id)
                 }}>add to cart</button>
-                : <div><button onClick={() => handle_amount(true)}><img src={"./assets/images/icon-decrement-quantity.svg"} alt={"decrement quantity"}/></button><span>{is_in_cart.amount}</span>
-                    <button onClick={() => handle_amount()}><img src={"./assets/images/icon-increment-quantity.svg"} alt={"increment quantity"}/></button>
+                : <div>
+                    <button onClick={() => handle_amount(true)}><img src={"./assets/images/icon-decrement-quantity.svg"}
+                                                                     alt={"decrement quantity"}/></button>
+                    <span>{is_in_cart.amount}</span>
+                    <button onClick={() => handle_amount()}><img src={"./assets/images/icon-increment-quantity.svg"}
+                                                                 alt={"increment quantity"}/></button>
                 </div>
             }
         </div>

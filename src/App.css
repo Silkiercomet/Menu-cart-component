@@ -1,19 +1,142 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+  --red: hsl(14, 86%, 42%);
+  --green: hsl(159, 69%, 38%);
+  --rose-50: hsl(20, 50%, 98%);
+  --rose-100: hsl(13, 31%, 94%);
+  --rose-300: hsl(14, 25%, 72%);
+  --rose-400: hsl(7, 20%, 60%);
+  --rose-500: hsl(12, 20%, 44%);
+  --rose-900: hsl(14, 65%, 9%);
+}
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('./assets/fonts/static/RedHatText-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('./assets/fonts/static/RedHatText-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('./assets/fonts/static/RedHatText-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  font-family: "Red Hat Text", 'Sans-serif', serif;
+
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root {
+  isolation: isolate;
+  width: 100%;
+}
+
+/* wrapper */
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr ;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 40px;
+  gap: 25px;
+  align-items: start;
+}
+.Items_grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-top: 15px;
+}
+/* wrapper */
+/* cart */
+.cart{
+  background-color: var(--rose-50);
+  padding: 20px;
+
+  border-radius: 10px;
+}
+.cart__empty{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 10px;
+
+}
+.cart h2{
+  color: var(--red);
+  font-size: 1.3rem;
+}
+.cart__empty p{
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--rose-400);
+}
+/* cart */
+@media screen and  (width > 640px) and (width < 1240px){
+  .Items_grid{
+    grid-template-columns: 1fr 1fr;
+  }
+  .Items_grid div:last-child {
+    /* Centra el último elemento */
+    justify-self: center;
+    grid-column: 2 span;
+  }
+}
+@media screen and (width > 1240px) {
+  .wrapper{
+    grid-template-columns: 72% 28%;
+  }
+  .Items_grid{
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  }
 }
