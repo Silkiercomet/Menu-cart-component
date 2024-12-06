@@ -30,7 +30,6 @@ function App() {
     const add_to_cart = (product: Product, id:number) => {
         const new_cart_item : ItemCart = {id: id, product: product, amount: 1};
         setCart([...cart, new_cart_item]);
-        console.log(cart)
     }
     const remove_from_cart = (id: number) => {
         const updated_cart = [...cart].filter(item => item.id !== id);
@@ -52,22 +51,26 @@ function App() {
                 console.log(err);
             }
         }
-        fetchData().then(r => console.log(r));
+        fetchData()
     }, [])
 
   return (
     <>
         {modal && <SuccessOrder cart={cart} clear_the_cart={clear_the_cart} />}
-      <div className={"wrapper"}>
-        <section>
-            <h1>Desserts</h1>
+      <div className="wrapper">
             <main>
-                {item.map((item, index) => <Card screenSize={screenSize} key={index} setCart={setCart} removeItem={remove_from_cart} id={index} item={item} add_to_cart={add_to_cart} cart={cart}/>)}
+                <h1>Desserts</h1>
+                <div className="Items_grid">
+                    {item.map((item, index) =>
+                        <Card screenSize={screenSize} key={index} setCart={setCart}
+                              removeItem={remove_from_cart} id={index} item={item}
+                              add_to_cart={add_to_cart} cart={cart}/>)
+                    }
+                </div>
             </main>
-            <aside>
+            <aside className="cart">
                 <Cart cart={cart} removeItem={remove_from_cart} setModal={setModal}></Cart>
             </aside>
-        </section>
       </div>
 
     </>
