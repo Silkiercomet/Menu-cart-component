@@ -56,7 +56,7 @@ const Card = ({item, add_to_cart, id, cart, removeItem, setCart, screenSize}: Ca
                 {!is_in_cart
                     ? <button className={style.card_image_select} onClick={() => {
                         add_to_cart(item, id)
-                    }}><i><img src={"./assets/images/icon-add-to-cart.svg"} alt="add yo cart"/></i>Add to Cart</button>
+                    }}><i><img src={"/assets/images/icon-add-to-cart.svg"} alt="add yo cart"/></i>Add to Cart</button>
                     : <div className={style.card_image_selected}>
                         <button onClick={() => handle_amount(true)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none"
