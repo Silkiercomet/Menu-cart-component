@@ -1,65 +1,74 @@
 @font-face {
-  font-family: 'Red-Hat';
-  src: url('./assets/fonts/RedHatText-VariableFont_wght.ttf') format('truetype'),
-  url("./assets/fonts/RedHatText-Italic-VariableFont_wght.ttf") format("truetype");
+    font-family: 'Red-Hat';
+    src: url('./assets/fonts/RedHatText-VariableFont_wght.ttf') format('truetype'),
+    url("./assets/fonts/RedHatText-Italic-VariableFont_wght.ttf") format("truetype");
 }
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-* {
-  margin: 0;
-}
-:root {
-  font-family: Red-Hat, serif;
-  line-height: 1.5;
-  --red: hsl(14, 86%, 42%);
-  --green: hsl(159, 69%, 38%);
-  --rose-50: hsl(20, 50%, 98%);
-  --rose-100: hsl(13, 31%, 94%);
-  --rose-300: hsl(14, 25%, 72%);
-  --rose-400: hsl(7, 20%, 60%);
-  --rose-500: hsl(12, 20%, 44%);
-  --rose-900: hsl(14, 65%, 9%);
-  color-scheme: light dark;
-  color: var(--rose-900);
-  background-color: var(--rose-100);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+:root {
+    font-family: Red-Hat, serif;
+    line-height: 1.5;
+    --red: hsl(14, 86%, 42%);
+    --green: hsl(159, 69%, 38%);
+    --rose-50: hsl(20, 50%, 98%);
+    --rose-100: hsl(13, 31%, 94%);
+    --rose-300: hsl(14, 25%, 72%);
+    --rose-400: hsl(7, 20%, 60%);
+    --rose-500: hsl(12, 20%, 44%);
+    --rose-900: hsl(14, 65%, 9%);
+    color-scheme: light dark;
+    color: var(--rose-900);
+    background-color: var(--rose-100);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
 }
+
 /* 5. Improve media defaults */
 img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
+    display: block;
+    max-width: 100%;
 }
+
 /* 6. Inherit fonts for form controls */
 input, button, textarea, select {
-  font: inherit;
+    font: inherit;
 }
+
 /* 7. Avoid text overflows */
 p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
+    overflow-wrap: break-word;
 }
+
 /* 8. Improve line wrapping */
 p {
-  text-wrap: pretty;
+    text-wrap: pretty;
 }
+
 h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
+    text-wrap: balance;
 }
+
 /*
   9. Create a root stacking context
 */
 #root, #__next {
-  isolation: isolate;
+    isolation: isolate;
 }
