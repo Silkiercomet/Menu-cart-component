@@ -1,6 +1,7 @@
 
 import {ItemCart} from "./App.tsx";
 import React from "react";
+import style from "./styles/card.module.css"
 
 interface Product {
     image: {
@@ -49,23 +50,35 @@ const Card = ({ item, add_to_cart, id, cart,removeItem, setCart, screenSize }: C
         image = item.image.mobile
     }
     return (
-        <div>
-            <img src={image} alt={item.name}/>
+        <div className={style.card}>
+            <figure className={style.card_image}>
+                <img src={image} alt={item.name}/>
+                {!is_in_cart
+                    ? <button className={style.card_image_select} onClick={() => {
+                        add_to_cart(item, id)
+                    }}><i><img src={"./assets/images/icon-add-to-cart.svg"} alt="add yo cart"/></i>Add to Cart</button>
+                    : <div className={style.card_image_selected}>
+                        <button onClick={() => handle_amount(true)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none"
+                                 viewBox="0 0 10 2">
+                                <path fill="#fff" d="M0 .375h10v1.25H0V.375Z"/>
+                            </svg>
+                        </button>
+                        <span>{is_in_cart.amount}</span>
+                        <button onClick={() => handle_amount()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none"
+                                 viewBox="0 0 10 10">
+                                <path fill="#fff"
+                                      d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                }
+            </figure>
             <p>{item.category}</p>
             <h3>{item.name}</h3>
-            <p>{item.price}</p>
-            {!is_in_cart
-                ? <button onClick={() => {
-                    add_to_cart(item, id)
-                }}>add to cart</button>
-                : <div>
-                    <button onClick={() => handle_amount(true)}><img src={"./assets/images/icon-decrement-quantity.svg"}
-                                                                     alt={"decrement quantity"}/></button>
-                    <span>{is_in_cart.amount}</span>
-                    <button onClick={() => handle_amount()}><img src={"./assets/images/icon-increment-quantity.svg"}
-                                                                 alt={"increment quantity"}/></button>
-                </div>
-            }
+            <p className={style.card_price}>${parseFloat(String(item.price)).toFixed(2)}</p>
+
         </div>
     );
 };

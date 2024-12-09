@@ -44,7 +44,6 @@ body {
   /* 4. Improve text rendering */
   -webkit-font-smoothing: antialiased;
   font-family: "Red Hat Text", 'Sans-serif', serif;
-
 }
 
 /* 5. Improve media defaults */
@@ -92,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
 .Items_grid{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 15px;
+  gap: 25px;
   margin-top: 15px;
 }
 /* wrapper */
@@ -130,6 +129,11 @@ h1, h2, h3, h4, h5, h6 {
     /* Centra el último elemento */
     justify-self: center;
     grid-column: 2 span;
+  }
+  .cart{
+    max-width: 640px;
+    min-width: 640px;
+    margin-inline: auto;
   }
 }
 @media screen and (width > 1240px) {
