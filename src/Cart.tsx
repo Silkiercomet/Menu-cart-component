@@ -29,7 +29,7 @@ const Cart = ({cart, removeItem, setModal}: cartType) => {
                                 <span>${parseFloat(String(item.amount * item.product.price)).toFixed(2)}</span>
                             </p>
                         </div>
-                        <button onClick={() => removeItem(item.id)}><img src={"./assets/images/icon-remove-item.svg"}
+                        <button onClick={() => removeItem(item.id)}><img src={"/assets/images/icon-remove-item.svg"}
                                                                          alt={"remove item"}/></button>
                     </div>)}
                     <div className={style.cart__total}><span>order total</span>
@@ -45,7 +45,7 @@ const Cart = ({cart, removeItem, setModal}: cartType) => {
         <>
             <h2>Your Cart (0)</h2>
             <div className="cart__empty">
-                <img src={"./assets/images/illustration-empty-cart.svg"} alt="illustration-empty-cart"/>
+                <img src={"/assets/images/illustration-empty-cart.svg"} alt="illustration-empty-cart"/>
                 <p>Your added items will appear here</p>
             </div>
         </>
