@@ -7,13 +7,13 @@ const useScreenSize = () => {
 
     useEffect(() => {
         const handleResize = () => {
-             if (window.innerWidth >= 640 && window.innerWidth < 1124) {
+            if (window.innerWidth >= 640 && window.innerWidth < 1124) {
                 setScreenSize("tablet");
-             } else if (window.innerWidth >= 1124) {
+            } else if (window.innerWidth >= 1124) {
                 setScreenSize("desktop");
-             } else {
-                 setScreenSize("mobile");
-             }
+            } else {
+                setScreenSize("mobile");
+            }
         };
 
         window.addEventListener("resize", handleResize);

@@ -1,25 +1,31 @@
-.card{
+.card {
     display: grid;
 }
-.card h3{
+
+.card h3 {
     font-weight: 600;
 }
-.card p:first-of-type{
+
+.card p:first-of-type {
     color: var(--rose-400);
 }
-.card_price{
+
+.card_price {
     color: var(--red);
     font-size: 1.3rem;
     font-weight: 600;
 }
-.card_image{
+
+.card_image {
     position: relative;
     margin-bottom: 32px;
 }
-.card_image img{
+
+.card_image img {
     border-radius: 10px;
 }
-.card_image_selected, .card_image_select{
+
+.card_image_selected, .card_image_select {
     position: absolute;
     bottom: -20px;
     left: 50%;
@@ -34,7 +40,8 @@
     font-weight: 600;
 
 }
-.card_image_select{
+
+.card_image_select {
     gap: 5px;
     justify-content: center;
     align-items: center;
@@ -42,17 +49,20 @@
     cursor: pointer;
     transition: 300ms ease-in-out;
 }
-.card_image_select:hover{
+
+.card_image_select:hover {
     border-color: var(--red);
     color: var(--red);
 }
-.card_image_selected{
+
+.card_image_selected {
     justify-content: space-between;
     background-color: var(--red);
     color: var(--rose-100);
     border-color: var(--red);
 }
-.card_image_selected > button{
+
+.card_image_selected > button {
     border-radius: 50%;
     border: 1px solid var(--rose-50);
     background-color: transparent;
@@ -60,11 +70,13 @@
 
     transition: 300ms ease-in-out;
 }
-.card_image_selected > button:hover{
+
+.card_image_selected > button:hover {
     background-color: var(--rose-100);
     color: var(--red);
 }
-.card_image_selected > button:hover svg path{
+
+.card_image_selected > button:hover svg path {
     fill: var(--red);
 
 }

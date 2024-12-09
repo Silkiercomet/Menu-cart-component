@@ -1,4 +1,3 @@
-
 import {ItemCart} from "./App.tsx";
 import React from "react";
 import style from "./styles/card.module.css"
@@ -14,24 +13,25 @@ interface Product {
     category: string;
     price: number;
 }
+
 interface Card {
-    item : Product,
-    add_to_cart: (product: Product,id: number) => void ,
-    id : number,
-    cart : ItemCart[],
-    removeItem : (id: number) => void
+    item: Product,
+    add_to_cart: (product: Product, id: number) => void,
+    id: number,
+    cart: ItemCart[],
+    removeItem: (id: number) => void
     setCart: React.Dispatch<React.SetStateAction<ItemCart[]>>
     screenSize: "mobile" | "tablet" | "desktop"
 }
 
-const Card = ({ item, add_to_cart, id, cart,removeItem, setCart, screenSize }: Card) => {
+const Card = ({item, add_to_cart, id, cart, removeItem, setCart, screenSize}: Card) => {
     const handle_amount = (decrease = false) => {
         let new_data = [...cart]
         const cart_item_to_update: ItemCart | any = new_data.find(item => item.id === id);
-        if((decrease && cart_item_to_update.amount === 1)) {
+        if ((decrease && cart_item_to_update.amount === 1)) {
             removeItem(id)
             return
-        } else if(decrease && cart_item_to_update.amount > 1) {
+        } else if (decrease && cart_item_to_update.amount > 1) {
             cart_item_to_update.amount = cart_item_to_update.amount - 1
             setCart(new_data)
             return
@@ -42,11 +42,11 @@ const Card = ({ item, add_to_cart, id, cart,removeItem, setCart, screenSize }: C
     }
     const is_in_cart = cart.find((element) => element.id === id)
     let image
-    if(screenSize === "tablet"){
+    if (screenSize === "tablet") {
         image = item.image.tablet
-    }else if(screenSize === "desktop"){
+    } else if (screenSize === "desktop") {
         image = item.image.desktop
-    }else{
+    } else {
         image = item.image.mobile
     }
     return (
@@ -66,7 +66,7 @@ const Card = ({ item, add_to_cart, id, cart,removeItem, setCart, screenSize }: C
                         </button>
                         <span>{is_in_cart.amount}</span>
                         <button onClick={() => handle_amount()}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none"
                                  viewBox="0 0 10 10">
                                 <path fill="#fff"
                                       d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
